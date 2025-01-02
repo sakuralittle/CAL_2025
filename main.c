@@ -38,6 +38,7 @@ typedef struct Error {
     Str30 dateStr;  // 日期的字串（如果需要記下就記在這裡）
 } Error;
 
+
 int gNumOfErrors = 0; // 'errors[]'之中總共有多少筆錯誤資料
 
 typedef struct Date {
