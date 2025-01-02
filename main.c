@@ -60,7 +60,7 @@ typedef struct Statistics {
     int worstSalesAmount;             // 銷售額最低的是多少
 } Statistics;
 
-Statistics gStat = {0, 0, 0, 0, 0, 0, 0, INT_MIN, 0, 0, 0, INT_MAX};
+//Statistics gStat = {0, 0, 0, 0, 0, 0, 0, INT_MIN, 0, 0, 0, INT_MAX};
 
 typedef struct PurchasedItem {
     Str30 barCode;  // 條碼（有時稱「序號」）
@@ -94,7 +94,7 @@ int  REVEIVING(void){ //注意他英文打錯receiving
 
 }
 int main(){
-	
+	printf("HELLO");
 	
 	
 }
