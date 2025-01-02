@@ -87,7 +87,7 @@ int  REVEIVING(void){ //注意他英文打錯receiving
 			break;
 		} 
         strcpy(PurchasedLog[i].barCode,input_str);//條碼輸入
-        whlie(1){
+        while(1){
             scanf("%c",&temp[count]);
             if(temp[count]=='\n'){ //還沒實驗過換行怎麼寫
                 break;

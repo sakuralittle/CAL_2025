@@ -1,4 +1,5 @@
 {
+        "version": "2.0.0",
     "tasks": [
         {
             "type": "cppbuild",
@@ -22,7 +23,46 @@
                 "isDefault": true
             },
             "detail": "偵錯工具產生的工作。"
+        },
+        {
+            "label": "Git Pull",
+            "type": "shell",
+            "command": "git pull origin main"
+        },
+        {
+            "label": "Git Add",
+            "type": "shell",
+            "command": "git",
+            "args": ["add", "."],
+            "problemMatcher": []
+          },
+          {
+            "label": "Git Commit",
+            "type": "shell",
+            "command": "git",
+            "args": ["commit", "-m", "${input:commitMessage}"],
+            "problemMatcher": []
+          },
+        {
+            "label": "Git Push",
+            "type": "shell",
+            "command": "git push origin main",
+            "problemMatcher": []
         }
     ],
-    "version": "2.0.0"
+    "inputs": [
+    {
+      "id": "branchName",
+      "type": "promptString",
+      "description": "输入分支名称",
+      "default": "main"
+    },
+    {
+      "id": "commitMessage",
+      "type": "promptString",
+      "description": "输入提交信息",
+      "default": "更新代码"
+    }
+  ]
+
 }
