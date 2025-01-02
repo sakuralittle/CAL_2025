@@ -92,6 +92,7 @@ int  REVEIVING(void){ //注意他英文打錯receiving
             if(temp[count]=='\n'){ //還沒實驗過換行怎麼寫
                 break;
             }
+            
         }
 	}
 	
