@@ -105,5 +105,3 @@ int main(){
 	
 }
 
-//test
-int Bruh = 0;
