@@ -102,6 +102,6 @@ int  REVEIVING(void){ //注意他英文打錯receiving
 int main(){
 	printf("HELLO");
 	
-	
+	printf("shit");
 }
 
