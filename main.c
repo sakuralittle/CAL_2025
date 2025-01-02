@@ -79,8 +79,8 @@ typedef struct SoldItem {
 
 struct PurchasedItem PurchasedLog[99]; //儲存進貨的交易紀錄(使用陣列的位置當成是交易序號) 
 int  REVEIVING(void){ //注意他英文打錯receiving 
-	int i=0; //i是輸入到purchaseLog的順序
-    char input_str[99],temp;//input_str為輸入資料的緩衝變數 
+	int i=0,count=0; //i是輸入到purchaseLog的順序
+    char input_str[99],temp[99];//input_str為輸入資料的緩衝變數 
 	while(1){
 		scanf("%s",input_str);
 		if(strcmp(input_str,"end")==0){
@@ -88,7 +88,10 @@ int  REVEIVING(void){ //注意他英文打錯receiving
 		} 
         strcpy(PurchasedLog[i].barCode,input_str);//條碼輸入
         whlie(1){
-            scanf("%c",&temp);
+            scanf("%c",&temp[count]);
+            if(temp[count]=='\n'){ //還沒實驗過換行怎麼寫
+                break;
+            }
         }
 	}
 	
