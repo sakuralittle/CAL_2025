@@ -7,7 +7,7 @@
 
 void Shipping(Product inventory[], Statistic *stat, Error errors[]);
 
-void Shipping(Product inventory[],Statistics *stat ,Error errors[]) {
+void Shipping(Product inventory[], Statistics *stat, Error errors[]) {
     Str30 barcode;
     int amount , price;
     while(1) {
@@ -31,7 +31,7 @@ void Shipping(Product inventory[],Statistics *stat ,Error errors[]) {
         if(found == -1) {
             //商品不存在
             errors[gNumOfErrors].type = NO_SUCH_PRODUCT;
-            strcpy(errors[gNumOfErrors].barCode,barcode);
+            strcpy(errors[gNumOfErrors].barCode, barcode);
             gNumOfErrors++;
         }
         if(amount < 0 || price < 0 ) {
@@ -66,20 +66,20 @@ void Shipping(Product inventory[],Statistics *stat ,Error errors[]) {
         //stat -> salesOfCurrentDate相當於(*stat).salesofCurrentDate
         stat -> salesOfCurrentDate += (price * amount);
         stat -> netSales += (price * amount);
-        stat->netProfit += (profit_per_item * amount);
+        stat -> netProfit += (profit_per_item * amount);
         
         // 更新最佳/最差銷售日
-        if (stat->salesOfCurrentDate > stat->bestSalesAmount) {
-            stat->bestSalesAmount = stat->salesOfCurrentDate;
-            stat->bestSalesYear = gCurrentDate.year;
-            stat->bestSalesMonth = gCurrentDate.month;
-            stat->bestSalesDay = gCurrentDate.day;
+        if (stat -> salesOfCurrentDate > stat-> bestSalesAmount) {
+            stat -> bestSalesAmount = stat -> salesOfCurrentDate;
+            stat -> bestSalesYear = gCurrentDate.year;
+            stat -> bestSalesMonth = gCurrentDate.month;
+            stat -> bestSalesDay = gCurrentDate.day;
         }
-        if (stat->salesOfCurrentDate < stat->worstSalesAmount) {
-            stat->worstSalesAmount = stat->salesOfCurrentDate;
-            stat->worstSalesYear = gCurrentDate.year;
-            stat->worstSalesMonth = gCurrentDate.month;
-            stat->worstSalesDay = gCurrentDate.day;
+        if (stat -> salesOfCurrentDate < stat -> worstSalesAmount) {
+            stat -> worstSalesAmount = stat -> salesOfCurrentDate;
+            stat -> worstSalesYear = gCurrentDate.year;
+            stat -> worstSalesMonth = gCurrentDate.month;
+            stat -> worstSalesDay = gCurrentDate.day;
         }
     }
 }
