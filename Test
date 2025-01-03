@@ -1,0 +1,17 @@
+def matrix_transpose():
+    while True:
+        try:
+            #讀取矩陣行列
+            m, n = map(int, input().split())
+            #讀取矩陣
+            matrix = [list(map(int, input().split()))for _ in range(m)]
+            #轉置矩陣
+            transposed = [[matrix[j][i]for j in range(m)]for i in range(n)]
+            #輸出轉至矩陣時加空格
+            for row in transposed:
+                print(' '.join(map(str,row)))
+            print()
+        except EOFError:
+            break
+matrix_transpose()
+
