@@ -21,6 +21,7 @@ void Shipping(Product inventory[],Statistics *stat ,Error errors[]) {
 
         //找貨物
         int found = -1;
+        //found用於紀錄是否找到物品 如果有找到 紀錄所在位置
         for (int i = 0 ; i < gNumOfProducts ; i++) {
             if(strcmp(inventory[i].barCode, barcode) == 0) {
                 found = i;
