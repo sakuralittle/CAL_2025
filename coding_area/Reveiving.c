@@ -6,6 +6,7 @@
 
 typedef char Str30[30]; // 能存放最多30個字元的字串
 
+
 typedef struct Product {
     Str30 barCode;         // 條碼（有時稱「序號」）
     Str30 name;            // 商品名稱
