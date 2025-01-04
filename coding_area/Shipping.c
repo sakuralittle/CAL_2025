@@ -53,13 +53,13 @@ void Shipping(Product inventory[], Statistics *stat, Error errors[]) {
         inventory[found].amountLeft -= amount;
         inventory[found].amountSold += amount; 
         inventory[found].profit = amount * profit_per_item;
-        //inventory[found].profit = inventory[found].profit - amount * profit_per_item;
+        //inventory[found].profit -= (amount * profit_per_item);
 
         // 更新最佳/最差單筆利潤
         if (profit_per_item > inventory[found].bestProfitPerItem) {
             inventory[found].bestProfitPerItem = profit_per_item;
         }
-        if (profit_per_item < inventory[found].worstLossPerItem) {
+        else if (profit_per_item < inventory[found].worstLossPerItem) {
             inventory[found].worstLossPerItem = profit_per_item;
         }
         
