@@ -43,9 +43,8 @@ void Stock(Product inventory[MAX_INVENTORY]){
         inventory[count].name[0] = '\0';
         
         while(1){		// 當 isNameFinished = 1 這裡的 !isNameFinished 為 Not True 代表已經讀完數字了 
-            scanf("%s",temp);  // 讀取一個字串(name、cost都有) 
-
-			      isNumber = 1;	// 還原為初始值
+		scanf("%s",temp);  // 讀取一個字串(name、cost都有) 
+		isNumber = 1;	// 還原為初始值
 			 
             for(int j = 0;temp[j] != '\0';j++){		// 檢查是不是整數 
                 if(temp[j] < '0' || temp[j] > '9'){
@@ -57,8 +56,7 @@ void Stock(Product inventory[MAX_INVENTORY]){
             if(isNumber == 1){	               
               inventory[count].cost = atoi(temp);   // 把數字存到 inventory[i].cost 中
               break;
-            } 
-			      else{
+            }else{
                 if(strlen(inventory[count].name) > 0) {
                     strcat(inventory[count].name," ");
                 }
