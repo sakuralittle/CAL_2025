@@ -76,32 +76,87 @@ typedef struct SoldItem {
     int amount;     // 賣出的個數
 } SoldItem; // struct SoldItem
 
-
+//--------------------------------------------------
+Statistics gStat = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+Product inventory[99];
 struct PurchasedItem PurchasedLog[99]; //儲存進貨的交易紀錄(使用陣列的位置當成是交易序號) 
-int  REVEIVING(void){ //注意他英文打錯receiving 
-	int i=0,count=0; //i是輸入到purchaseLog的順序
-    char input_str[99],temp[99];//input_str為輸入資料的緩衝變數 
-	while(1){
-		scanf("%s",input_str);
-		if(strcmp(input_str,"end")==0){
-			break;
-		} 
-        strcpy(PurchasedLog[i].barCode,input_str);//條碼輸入
-        while(1){
-            scanf("%c",&temp[count]);
-            if(temp[count]=='\n'){ //還沒實驗過換行怎麼寫
-                break;
-            }
-            count++;
+int check_barcode(Str30 temp){
+    char z[30];
+    int i;
+    if(strlen(temp)==6&&(temp[0]-'A'<26&&temp[0]-'A'>-1)){
+        strcpy(z,temp);
+        z[0]='0';
+        if(sscanf(z,"%d",&i)==1){
+            return 1;
         }
-	}
-	
+    }
+    return 0;
+}
+void capital(void){
+    scanf("%d",&gStat.capital);
+    if(gStat.capital<0){
+        //capital error
+    }
+}
+void STOCK(void){
+    Product init;
+    char temp[40];
+    int z,state=0,count=0,i=0;
+    while(1){
+        state=0;
+        count=0;
+        scanf("%s",temp);
+        if(strcmp(temp,"end")){
+            break;
+        }
+        strcpy(init.barCode,temp);
+        while(1){
+            scanf("%s",temp);
+            if(sscanf(temp,"%d",&z)!=1){
+                init.cost=z;
+                scanf("%d",&z);
+                init.amountLeft=z;
+                break;
+            }else{
+                if(count!=0){
+                    strcat(init.name," ");
+                }
+                strcat(init.name,temp);
+            }
+        }
+        //next is about checking
+        if(init.cost<0){
+            state=404;
+        }
+        if(init.amountLeft<0){
+            state=404;
+        }
+        if(check_barcode(init.barCode)==0){
+            state=404;
+            //barcode error
+        }
+        if(state!=404){
+            inventory[i]=init;
+            i++;
+        }
+    }
+}
+void initial(void){
+    char temp[40];
+    scanf("%s",temp);
+    if(strcmp(temp,"CAPITAL")==0){
+        capital();
+    }
+    if(strcmp(temp,"STOCK")==0){
+        STOCK();
+    }
+}
+
+int  REVEIVING(void){ //注意他英文打錯receiving 
 	
 
 }
 int main(){
-	printf("HELLO");
-	printf("666");
-	printf("shit");
+	initial();
 }
 
