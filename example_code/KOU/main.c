@@ -79,6 +79,7 @@ typedef struct SoldItem {
 //--------------------------------------------------
 Statistics gStat = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 Product inventory[99];
+Date last_date,now_date;
 struct PurchasedItem PurchasedLog[99]; //儲存進貨的交易紀錄(使用陣列的位置當成是交易序號) 
 int check_barcode(Str30 temp){
     char z[30];
@@ -151,12 +152,30 @@ void initial(void){
         STOCK();
     }
 }
-
+void DATE_Refresh(Date z){
+    char temp[40];
+    scanf("%s",temp);
+    sscanf(temp,"%d/%d/%d",&z.year,&z.month,&z.day);
+}
+int DATE_ToInt(Date temp){
+    int ans;
+    ans=temp.year*10000+temp.month*100+temp.day;
+    return ans;
+}
 int  REVEIVING(void){ //注意他英文打錯receiving 
 	
 
 }
 int main(){
+    char temp[40];
 	initial();
+    while(scanf("%s",temp)!=EOF){
+        if(strcmp(temp,"DATE")==0){
+            DATE_Refrash(now_date);
+            if(DATE_ToInt(now_date)<DATE_ToInt(last_date)){
+                //Date_error
+            }
+        }
+    }
 }
 
