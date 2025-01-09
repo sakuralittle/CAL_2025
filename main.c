@@ -77,27 +77,53 @@ typedef struct SoldItem {
 } SoldItem; // struct SoldItem
 
 
-struct PurchasedItem PurchasedLog[99]; //儲存進貨的交易紀錄(使用陣列的位置當成是交易序號) 
-int  REVEIVING(void){ //注意他英文打錯receiving 
-	int i=0,count=0; //i是輸入到purchaseLog的順序
+//struct PurchasedItem PurchasedLog[99]; //儲存進貨的交易紀錄(使用陣列的位置當成是交易序號) 
+int  REVEIVING(PurchasedItem PurchasedLog[99]){ //注意他英文打錯receiving 
+	int i=0,count=0,price=0,amount=0,i_before=0;; //i是輸入到purchaseLog的順序
     char input_str[99],temp[99];//input_str為輸入資料的緩衝變數 
+	PurchasedItem input_temp;
+	//以下是用來判斷當沒法設全域變數時，每次call Recieving應該要判斷從第i個開始輸入產品資訊
+        while(PurchasedLog[i].unitPrice!=0){
+                i++;
+	}
+	i_before = i;
+	//以下為單純輸入一組商品
 	while(1){
-		scanf("%s",input_str);
+		scanf("%s",input_temp.barcode);
+		//這邊如果有需要可以補條碼格式驗證
 		if(strcmp(input_str,"end")==0){
 			break;
 		} 
-        strcpy(PurchasedLog[i].barCode,input_str);//條碼輸入
-        while(1){
-            scanf("%c",&temp[count]);
-            if(temp[count]=='\n'){ //還沒實驗過換行怎麼寫
-                break;
-            }
-            count++;
-        }
+                strcpy(PurchasedLog[i].barCode,input_str);//條碼輸入
+		count=0;
+                while(1){
+                        scanf("%c",&temp[count]);
+                        if(temp[count]=='\n'){ //還沒實驗過換行怎麼寫
+				temp[count]='\0';
+                                break;
+                        }
+                        count++;
+                }
+		if(count==0){
+			//更改error log資訊,商品名稱無輸入錯誤
+		}else{
+			strcpy(PurchasedLog[i].name,temp);
+		}
+		scanf("%d",&price);
+		if(price<1){
+                        //回傳errorlog，商品價格輸入錯誤
+		}else{
+			PurchasedLog[i].unitprice=price;
+		}
+		scanf("%d",&amount);
+		if(amount<1){
+                        //回傳errorlog，商品數量輸入錯誤
+		}else{
+			PurchasedLog[i].amount=amount;
+		}
+		i++;
 	}
-	
-	
-
+	return i-i_before;//回傳有效輸入量
 }
 int main(){
 	printf("HELLO");
