@@ -99,6 +99,15 @@ void capital(void){
         //capital error
     }
 }
+int check_item(Product *test){
+    char temp[40];
+    for(int i=0;i<gNumOfProducts;i++){
+        if(strcmp(test->barCode,inventory[i].barCode)==0&&strcmp(test->name,inventory[i].name)&&test->cost==inventory[i].cost){
+            return i;
+        }
+    }
+    return -404;
+}
 void STOCK(void){
     Product init;
     char temp[40];
@@ -138,6 +147,7 @@ void STOCK(void){
         }
         if(state!=404){
             inventory[i]=init;
+            gNumOfProducts++;
             i++;
         }
     }
@@ -152,10 +162,11 @@ void initial(void){
         STOCK();
     }
 }
-void DATE_Refresh(Date z){
+void DATE_Refresh(Date *z){
     char temp[40];
     scanf("%s",temp);
-    sscanf(temp,"%d/%d/%d",&z.year,&z.month,&z.day);
+    sscanf(temp,"%d/%d/%d",&z->year,&z->month,&z->day);
+    scanf("%s",temp);
 }
 int DATE_ToInt(Date temp){
     int ans;
@@ -163,7 +174,29 @@ int DATE_ToInt(Date temp){
     return ans;
 }
 int  REVEIVING(void){ //注意他英文打錯receiving 
-	
+    Product init;
+	char temp[40];
+    int i,z,count=0;
+    while(1){
+        scanf("%s",temp);
+        if(strcmp(temp,"end")==0){
+            break;
+        }
+        while(1){
+            scanf("%s",temp);
+            if(sscanf(temp,"%d",&z)!=1){
+                init.cost=z;
+                scanf("%d",&z);
+                init.amountLeft=z;
+                break;
+            }else{
+                if(count!=0){
+                    strcat(init.name," ");
+                }
+                strcat(init.name,temp);
+            }
+        }
+    }
 
 }
 int main(){
@@ -175,6 +208,17 @@ int main(){
             if(DATE_ToInt(now_date)<DATE_ToInt(last_date)){
                 //Date_error
             }
+            last_date=now_date;
+        }
+        if(strcmp(temp,"RECEIVING")==0){
+            REVEIVING();
+        }
+        if(strcmp(temp,"SHIPPING")==0){
+            SHIPPING();
+        }
+        if(strcmp(temp,"OUTPUT")==0){
+            OUTPUT();
+            break;
         }
     }
 }
